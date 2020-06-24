@@ -1,2 +1,2 @@
 # ManagerDemo
-#简单的SSM的管理系统
+基于SSM的简单的管理系统
