@@ -10,8 +10,8 @@ public class Department {
     private  String deptName;
 
     public Department() {
-    }
 
+    }
     public Department(Integer deptId, String deptLeader, String deptName) {
         this.deptId = deptId;
         this.deptLeader = deptLeader;
