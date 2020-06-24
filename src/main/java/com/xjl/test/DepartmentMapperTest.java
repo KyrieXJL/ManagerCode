@@ -68,7 +68,7 @@ public class DepartmentMapperTest {
 
     @Test
     public void selectDeptsByLimitAndOffsetTest(){
-        List<Department> departments = departmentMapper.selectDeptsByLimitAndOffset(2,5);
+        List<Department> departments = departmentMapper.selectDeptsByLimitAndOffset(1,5);
         System.out.println(departments.size());
         for (int i = 0; i < departments.size(); i++) {
             System.out.println(departments.get(i));
