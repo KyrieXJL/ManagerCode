@@ -41,11 +41,11 @@
         emp_name = #{empName}
     </select>
 
-    <select id="selectWithDeptById" parameterType="Integer"  resultMap="withDeptResultMap">
+    <select id="selectWithDeptById" parameterType="Integer" resultMap="withDeptResultMap">
         SELECT
         <include refid="select_withdept_fields"/>
         FROM
-       tbl_emp e, tbl_dept d
+        tbl_emp e, tbl_dept d
         WHERE
         e.department_id = d.dept_id
         AND
@@ -54,7 +54,7 @@
 
     <select id="selectByLimitAndOffset" resultMap="withDeptResultMap">
         SELECT
-         <include refid="select_withdept_fields"></include>
+        <include refid="select_withdept_fields"></include>
         FROM
         tbl_emp e
         LEFT JOIN

@@ -5,7 +5,7 @@
     <title>Employee Add Page</title>
 </head>
 <body>
-<div class="modal fade emp-add-modal" tabindex="-1" role="dialog" aria-labelledby="emp-add-modal">
+<div class="modal fade emp-add-modal" tabindex="-1" role="dialog" aria-labelledby="emp-add-modal" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -44,7 +44,10 @@
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <select class="form-control" name="departmentId" id="add_department">
-                                   <%-- <option value="1">CEO</option>--%>
+                                 <%--   <option value="1">销售部</option>
+                                    <option value="2">研发部</option>
+                                    <option value="3">IT部</option>
+                                    <option value="4">市场部</option>--%>
                                 </select>
                             </div>
                         </div>
@@ -61,7 +64,6 @@
 
 
 <script type="text/javascript">
-
     <!-------------------------------------员工新增操作-------------------------------------->
     //=======0 点击 员工新增按钮，发送AJAX请求查询部门列表信息，弹出模态框，
     // 将查询得到的部门列表信息显示在对应模态框中部门信息处。=============================

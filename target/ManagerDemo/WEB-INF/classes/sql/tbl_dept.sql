@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS `tbl_dept`;
+CREATE TABLE `tbl_dept`(
+	`dept_id` int(11) NOT NULL DEFAULT 0,
+	`dept_name` VARCHAR(255) NOT NULL DEFAULT '',
+  `dept_leader` VARCHAR(255) NOT NULL DEFAULT ''
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -4,12 +4,12 @@
     <title>Foot Page</title>
 </head>
 <body>
-<div class="hrms_footer" style="text-align: center;">
+<div class="xjl_footer" style="text-align: center;">
     <address>
         <strong>Copyright&copy;XXX公司.Inc</strong><br>
-        徐汇区民润大厦五层<br>
-        <abbr title="Phone">P:</abbr> (123) 456-7890
+       无锡国家软件园白羊座<br>
+       <span>TEL:(0515)-5420969</span>
     </address>
-</div><!-- /.hrms_footer -->
+</div>
 </body>
 </html>

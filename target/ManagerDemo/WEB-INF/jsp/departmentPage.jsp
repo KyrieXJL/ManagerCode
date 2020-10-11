@@ -5,16 +5,15 @@
     <title>部门管理页面</title>
 </head>
 <body>
-<div class="hrms_dept_container">
+<div class="xjl_dept_container">
     <!-- 导航栏-->
     <%@ include file="./commom/head.jsp"%>
 
 
     <!-- 中间部分（左侧栏+表格内容） -->
-    <div class="hrms_dept_body">
+    <div class="xjl_dept_body">
         <!-- 左侧栏 -->
         <%@ include file="./commom/leftsidebar.jsp"%>
-
         <!-- 部门表格内容 -->
         <div class="dept_info col-sm-10">
             <div class="panel panel-success">
@@ -54,7 +53,7 @@
                     </div>
                     <nav aria-label="Page navigation" class="pull-right">
                         <ul class="pagination">
-                            <li><a href="/hrms/dept/getDeptList?pageNo=1">首页</a></li>
+                            <li><a href="/xjl/dept/getDeptList?pageNo=1">首页</a></li>
                             <c:if test="${curPageNo==1}">
                                 <li class="disabled">
                                     <a href="#" aria-label="Previous" class="prePage">
@@ -72,10 +71,10 @@
 
                             <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
                                 <c:if test="${curPageNo == itemPage}">
-                                    <li class="active"><a href="/hrms/dept/getDeptList?pageNo=${itemPage}">${itemPage}</a></li>
+                                    <li class="active"><a href="/xjl/dept/getDeptList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                                 <c:if test="${curPageNo != itemPage}">
-                                    <li><a href="/hrms/dept/getDeptList?pageNo=${itemPage}">${itemPage}</a></li>
+                                    <li><a href="/xjl/dept/getDeptList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                             </c:forEach>
 
@@ -93,13 +92,13 @@
                                     </a>
                                 </li>
                             </c:if>
-                            <li><a href="/hrms/dept/getDeptList?pageNo=${totalPages}">尾页</a></li>
+                            <li><a href="/xjl/dept/getDeptList?pageNo=${totalPages}">尾页</a></li>
                         </ul>
                     </nav>
                 </div>
             </div><!-- /.panel panel-success -->
         </div><!-- /.dept_info -->
-    </div><!-- /.hrms_dept_body -->
+    </div>
 
     <%@ include file="departmentAdd.jsp"%>
     <%@ include file="departmentUpdate.jsp"%>
@@ -107,7 +106,7 @@
     <!-- 尾部-->
     <%@ include file="./commom/foot.jsp"%>
 
-</div><!-- /.hrms_dept_container -->
+</div>
 
 <script type="text/javascript">
     var curPageNo = ${curPageNo};
@@ -133,7 +132,7 @@
         var delDeptId = $(this).parent().parent().find("td:eq(0)").text();
         var delDeptName = $(this).parent().parent().find("td:eq(1)").text();
         var curPageNo = ${curPageNo};
-        if (confirm("确认删除【"+ delDeptName +"】的信息吗？")){
+        if (confirm("确认删除["+ delDeptName +"]的信息吗？")){
             $.ajax({
                 url:"/xjl/dept/delDept/"+delDeptId,
                 type:"DELETE",

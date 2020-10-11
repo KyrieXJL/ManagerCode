@@ -5,15 +5,15 @@
     <title>员工管理页面</title>
 </head>
 <body>
-<div class="hrms_container">
+<div class="xjl_container">
     <!-- 导航条 -->
-    <%@ include file="./commom/head.jsp"%>
+    <%@ include file="./commom/head.jsp" %>
 
     <!-- 中间部分（包括左边栏和员工/部门表单显示部分） -->
-    <div class="hrms_body" style="position:relative; top:-15px;">
+    <div class="xjl_body" style="position:relative; top:-15px;">
 
         <!-- 左侧栏 -->
-        <%@ include file="./commom/leftsidebar.jsp"%>
+        <%@ include file="./commom/leftsidebar.jsp" %>
 
         <!-- 中间员工表格信息展示内容 -->
         <div class="emp_info col-sm-10">
@@ -27,91 +27,97 @@
                     </ol>
                 </div>
                 <!-- Table -->
-                <table class="table table-bordered table-hover" id="emp_table">
+                <table class="table table-bordered table-hover" id="emp_table" align="center">
                     <thead>
-                    <th>员工编号</th>
-                    <th>员工姓名</th>
-                    <th>邮箱</th>
-                    <th>性别</th>
-                    <th>部门</th>
-                    <th>操作</th>
+                    <th style="text-align:center">员工编号</th>
+                    <th style="text-align:center">员工姓名</th>
+                    <th style="text-align:center">邮箱</th>
+                    <th style="text-align:center">性别</th>
+                    <th style="text-align:center">部门</th>
+                    <th style="text-align:center">操作</th>
                     </thead>
-                    <tbody>
-                        <c:forEach items="${employees}" var="emp">
-                            <tr>
-                                <td>${emp.empId}</td>
-                                <td>${emp.empName}</td>
-                                <td>${emp.empEmail}</td>
-                                <td>${emp.gender == "F"? "女": "男"}</td>
-                                <td>${emp.department.deptName}</td>
-                                <td>
-                                    <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal" data-target=".emp-update-modal">编辑</a>
-                                    <a href="#" role="button" class="btn btn-danger emp_delete_btn">删除</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
+                    <tbody align="center">
+                    <c:forEach items="${employees}" var="emp">
+                        <tr align="center">
+                            <td>${emp.empId}</td>
+                            <td>${emp.empName}</td>
+                            <td>${emp.empEmail}</td>
+                            <td>${emp.gender == "女"? "女": "男"}</td>
+                            <td>${emp.department.deptName}</td>
+                            <td>
+                                <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal"
+                                   data-target=".emp-update-modal">编辑</a>
+                                <a href="#" role="button" class="btn btn-danger emp_delete_btn">删除</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
 
-                <div class="panel-body">
+                <div class="panel-body" align="center">
                     <div class="table_items">
-                        当前第<span class="badge">${curPage}</span>页，共有<span class="badge">${totalPages}</span>页，总记录数<span class="badge">${totalItems}</span>条。
+                        当前第<span class="badge">${curPage}</span>页，共有<span class="badge">${totalPages}</span>页，总记录数<span
+                            class="badge">${totalItems}</span>条。
                     </div>
-                    <nav aria-label="Page navigation" class="pull-right">
-                        <ul class="pagination">
-                            <li><a href="/xjl/emp/getEmpList?pageNo=1">首页</a></li>
-                            <c:if test="${curPage==1}">
-                                <li class="disabled">
-                                    <a href="#" aria-label="Previous" class="prePage">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                            </c:if>
-                            <c:if test="${curPage!=1}">
-                                <li>
-                                    <a href="#" aria-label="Previous" class="prePage">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                            </c:if>
-
-                            <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
-                                <c:if test="${curPage == itemPage}">
-                                    <li class="active"><a href="/xjl/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                    <div align="center">
+                        <nav aria-label="Page navigation" class="pull-right">
+                            <ul class="pagination">
+                                <li><a href="/xjl/emp/getEmpList?pageNo=1">首页</a></li>
+                                <c:if test="${curPage==1}">
+                                    <li class="disabled">
+                                        <a href="#" aria-label="Previous" class="prePage">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
                                 </c:if>
-                                <c:if test="${curPage != itemPage}">
-                                    <li><a href="/xjl/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                                <c:if test="${curPage!=1}">
+                                    <li>
+                                        <a href="#" aria-label="Previous" class="prePage">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
                                 </c:if>
-                            </c:forEach>
 
-                            <c:if test="${curPage==totalPages}">
-                                <li class="disabled" class="nextPage">
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </c:if>
-                            <c:if test="${curPage!=totalPages}">
-                                <li>
-                                    <a href="#" aria-label="Next" class="nextPage">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </c:if>
-                            <li><a href="/xjl/emp/getEmpList?pageNo=${totalPages}">尾页</a></li>
-                        </ul>
-                    </nav>
+                                <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
+                                    <c:if test="${curPage == itemPage}">
+                                        <li class="active"><a href="/xjl/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${curPage != itemPage}">
+                                        <li><a href="/xjl/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                                    </c:if>
+                                </c:forEach>
+
+                                <c:if test="${curPage==totalPages}">
+                                    <li class="disabled" class="nextPage">
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${curPage!=totalPages}">
+                                    <li>
+                                        <a href="#" aria-label="Next" class="nextPage">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <li><a href="/xjl/emp/getEmpList?pageNo=${totalPages}">尾页</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
                 </div>
             </div><!-- /.panel panel-success -->
         </div><!-- /.emp_info -->
 
         <!-- 尾部 -->
-        <%@ include file="./commom/foot.jsp"%>
-    </div><!-- /.hrms_body -->
+        <%@ include file="./commom/foot.jsp" %>
+    </div>
 </div><!-- /.container -->
 
-<%@ include file="employeeAdd.jsp"%>
-<%@ include file="employeeUpdate.jsp"%>
+<%@ include file="employeeAdd.jsp" %>
+<%@ include file="employeeUpdate.jsp" %>
 
 
 <script>
@@ -120,16 +126,16 @@
         var curPage = ${curPage};
         var totalPages = ${totalPages};
         $(".prePage").click(function () {
-            if (curPage > 1){
-                var pageNo = curPage-1;
-                $(this).attr("href", "/xjl/emp/getEmpList?pageNo="+pageNo);
+            if (curPage > 1) {
+                var pageNo = curPage - 1;
+                $(this).attr("href", "/xjl/emp/getEmpList?pageNo=" + pageNo);
             }
         });
         //下一页
         $(".nextPage").click(function () {
-            if (curPage < totalPages){
-                var pageNo = curPage+1;
-                $(this).attr("href", "/xjl/emp/getEmpList?pageNo="+pageNo);
+            if (curPage < totalPages) {
+                var pageNo = curPage + 1;
+                $(this).attr("href", "/xjl/emp/getEmpList?pageNo=" + pageNo);
             }
         });
     })
@@ -139,15 +145,15 @@
         var curPage = ${curPage};
         var delEmpId = $(this).parent().parent().find("td:eq(0)").text();
         var delEmpName = $(this).parent().parent().find("td:eq(1)").text();
-        if (confirm("确认删除【" + delEmpName+ "】的信息吗？")){
+        if (confirm("确认删除【" + delEmpName + "】的信息吗？")) {
             $.ajax({
-                url:"/xjl/emp/deleteEmp/"+delEmpId,
-                type:"DELETE",
-                success:function (result) {
-                    if (result.code == 100){
+                url: "/xjl/emp/deleteEmp/" + delEmpId,
+                type: "DELETE",
+                success: function (result) {
+                    if (result.code == 100) {
                         alert("删除成功！");
-                        window.location.href="/xjl/emp/getEmpList?pageNo="+curPage;
-                    }else {
+                        window.location.href = "/xjl/emp/getEmpList?pageNo=" + curPage;
+                    } else {
                         alert(result.extendInfo.emp_del_error);
                     }
                 }

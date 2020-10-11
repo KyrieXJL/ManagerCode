@@ -5,46 +5,47 @@ package com.xjl.bean;
  * @date:2020/5/24 21:15
  */
 public class Employee {
-    private  Integer empId;
-    private  String empName;
-    private  String empEmail;
-    private  String gender;
-    private Integer departmentId;
-    private  Department department;
+    private Integer emp_id;
+    private String emp_name;
+    private String emp_email;
+    private String gender;
+    private Integer department_id;
+    private Department department;
 
     public Employee() {
     }
 
     public Employee(Integer empId, String empName, String empEmail, String gender, Integer departmentId) {
-        this.empId = empId;
-        this.empName = empName;
-        this.empEmail = empEmail;
+        this.emp_id = empId;
+        this.emp_name = empName;
+        this.emp_email = empEmail;
         this.gender = gender;
-        this.departmentId = departmentId;
+        this.department_id = departmentId;
     }
 
+
     public Integer getEmpId() {
-        return empId;
+        return emp_id;
     }
 
     public void setEmpId(Integer empId) {
-        this.empId = empId;
+        this.emp_id = empId;
     }
 
     public String getEmpName() {
-        return empName;
+        return emp_name;
     }
 
     public void setEmpName(String empName) {
-        this.empName = empName;
+        this.emp_name = empName;
     }
 
     public String getEmpEmail() {
-        return empEmail;
+        return emp_email;
     }
 
     public void setEmpEmail(String empEmail) {
-        this.empEmail = empEmail;
+        this.emp_email = empEmail;
     }
 
     public String getGender() {
@@ -56,11 +57,11 @@ public class Employee {
     }
 
     public Integer getDepartmentId() {
-        return departmentId;
+        return department_id;
     }
 
     public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+        this.department_id = departmentId;
     }
 
     public Department getDepartment() {
@@ -74,11 +75,11 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "empId=" + empId +
-                ", empName='" + empName + '\'' +
-                ", empEmail='" + empEmail + '\'' +
+                "emp_id=" + emp_id +
+                ", emp_name='" + emp_name + '\'' +
+                ", emp_email='" + emp_email + '\'' +
                 ", gender='" + gender + '\'' +
-                ", departmentId=" + departmentId +
+                ", department_id=" + department_id +
                 ", department=" + department +
                 '}';
     }

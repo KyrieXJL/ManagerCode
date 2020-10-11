@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * */
 @Controller
 public class TestController {
-
     @RequestMapping(value = "/test",  method = RequestMethod.GET)
     public String index(){
-        System.out.println("测试。。。");
+        System.out.println("This is TestController!!!");
         return "main";
     }
 }

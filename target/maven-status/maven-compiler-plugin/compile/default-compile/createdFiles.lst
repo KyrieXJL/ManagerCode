@@ -1,0 +1,14 @@
+com\xjl\test\DepartmentMapperTest.class
+com\xjl\mapper\EmployeeMapper.class
+com\xjl\controller\LoginController.class
+com\xjl\controller\DepartmentController.class
+com\xjl\util\JsonInfo.class
+com\xjl\controller\MainController.class
+com\xjl\controller\EmployeeController.class
+com\xjl\bean\Employee.class
+com\xjl\test\EmployeeMapperTest.class
+com\xjl\controller\TestController.class
+com\xjl\bean\Department.class
+com\xjl\service\DepartmentService.class
+com\xjl\mapper\DepartmentMapper.class
+com\xjl\service\EmployeeService.class

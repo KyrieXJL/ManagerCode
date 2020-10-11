@@ -1,6 +1,6 @@
 package com.xjl.controller;
 
-import com.xjl.util.JsonMsg;
+import com.xjl.util.JsonInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,14 +34,14 @@ public class LoginController {
      */
     @RequestMapping(value = "/dologin", method = RequestMethod.POST)
     @ResponseBody
-    public JsonMsg dologin(HttpServletRequest request) {
+    public JsonInfo dologin(HttpServletRequest request) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         System.out.println(username + password);
         if (!"admin1234".equals(username + password)) {
-            return JsonMsg.fail().addInfo("login_error", "输入账号用户名与密码不匹配，请重新输入！");
+            return JsonInfo.fail().addInfo("login_error", "输入账号用户名与密码不匹配，请重新输入！");
         }
-        return JsonMsg.success();
+        return JsonInfo.success();
     }
 
     /**

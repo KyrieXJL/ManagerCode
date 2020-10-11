@@ -10,6 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/xjl")
 public class MainController {
+    /**
+     * 公司简介 相关页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/About")
+    public String About() {
+        return "About";
+    }
 
+    /**
+     * 疫情防控相关页面
+     *
+     * @return
+     */
+    @RequestMapping("/coronavirus")
+    public String con() {
+        return "coronavirus";
+    }
 
 }

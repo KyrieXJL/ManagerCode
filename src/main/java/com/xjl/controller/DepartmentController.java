@@ -1,16 +1,14 @@
 package com.xjl.controller;
+
 import com.xjl.bean.Department;
 import com.xjl.service.DepartmentService;
-import com.xjl.util.JsonMsg;
+import com.xjl.util.JsonInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
-/**
- * @author xjl
- * @date 2020/6/2
- */
 @Controller
 @RequestMapping(value = "/xjl/dept")
 public class DepartmentController {
@@ -25,15 +23,15 @@ public class DepartmentController {
      */
     @RequestMapping(value = "/delDept/{deptId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonMsg deleteDept(@PathVariable("deptId") Integer deptId){
+    public JsonInfo deleteDept(@PathVariable("deptId") Integer deptId){
         int res = 0;
         if (deptId > 0){
             res = departmentService.deleteDeptById(deptId);
         }
         if (res != 1){
-            return JsonMsg.fail().addInfo("del_dept_error", "删除异常");
+            return JsonInfo.fail().addInfo("del_dept_error", "删除异常");
         }
-        return JsonMsg.success();
+        return JsonInfo.success();
     }
 
     /**
@@ -44,16 +42,16 @@ public class DepartmentController {
      */
     @RequestMapping(value = "/updateDept/{deptId}", method = RequestMethod.PUT)
     @ResponseBody
-    public JsonMsg updateDeptById(@PathVariable("deptId") Integer deptId, Department department){
+    public JsonInfo updateDeptById(@PathVariable("deptId") Integer deptId, Department department){
 
         int res = 0;
         if (deptId > 0){
             res = departmentService.updateDeptById(deptId, department);
         }
         if (res != 1){
-            return JsonMsg.fail().addInfo("update_dept_error", "部门更新失败");
+            return JsonInfo.fail().addInfo("update_dept_error", "部门更新失败");
         }
-        return JsonMsg.success();
+        return JsonInfo.success();
     }
 
     /**
@@ -63,12 +61,12 @@ public class DepartmentController {
      */
     @RequestMapping(value = "/addDept", method = RequestMethod.PUT)
     @ResponseBody
-    public JsonMsg addDept(Department department){
+    public JsonInfo addDept(Department department){
         int res = departmentService.addDept(department);
         if (res != 1){
-            return JsonMsg.fail().addInfo("add_dept_error", "添加异常！");
+            return JsonInfo.fail().addInfo("add_dept_error", "添加异常！");
         }
-        return JsonMsg.success();
+        return JsonInfo.success();
     }
 
     /**
@@ -77,7 +75,7 @@ public class DepartmentController {
      */
     @RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getTotalPages(){
+    public JsonInfo getTotalPages(){
 
         //每页显示的记录行数
         int limit = 5;
@@ -86,7 +84,7 @@ public class DepartmentController {
         int temp = totalItems / limit;
         int totalPages = (totalItems % limit== 0) ? temp : temp+1;
 
-        return JsonMsg.success().addInfo("totalPages", totalPages);
+        return JsonInfo.success().addInfo("totalPages", totalPages);
     }
 
     /**
@@ -95,15 +93,15 @@ public class DepartmentController {
 
     @RequestMapping(value = "/getDeptById/{deptId}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getDeptById(@PathVariable("deptId") Integer deptId){
+    public JsonInfo getDeptById(@PathVariable("deptId") Integer deptId){
         Department department = null;
         if (deptId > 0){
             department = departmentService.getDeptById(deptId);
         }
         if (department != null){
-            return JsonMsg.success().addInfo("department", department);
+            return JsonInfo.success().addInfo("department", department);
         }
-        return JsonMsg.fail().addInfo("get_dept_error", "无部门信息");
+        return JsonInfo.fail().addInfo("get_dept_error", "无部门信息");
     }
 
     /**
@@ -137,12 +135,12 @@ public class DepartmentController {
      */
     @RequestMapping(value = "/getDeptName", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getDeptName(){
+    public JsonInfo getDeptName(){
         List<Department> departmentList = departmentService.getDeptName();
         if (departmentList != null){
-            return JsonMsg.success().addInfo("departmentList", departmentList);
+            return JsonInfo.success().addInfo("departmentList", departmentList);
         }
-        return JsonMsg.fail();
+        return JsonInfo.fail();
     }
 
 

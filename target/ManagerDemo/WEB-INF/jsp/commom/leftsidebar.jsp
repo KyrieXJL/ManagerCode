@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<div class="panel-group col-sm-2" id="hrms_sidebar_left" role="tablist" aria-multiselectable="true">
+<div class="panel-group col-sm-2" id="xjl_sidebar_left" role="tablist" aria-multiselectable="true">
     <ul class="nav nav-pills nav-stacked emp_sidebar">
         <li role="presentation" class="active">
             <a href="#" data-toggle="collapse" data-target="#collapse_emp">
@@ -26,13 +25,18 @@
         </li>
     </ul>
 
-</div><!-- /.panel-group，#hrms_sidebar_left -->
+</div>
 
 <script type="text/javascript">
     //跳转到员工页面
     $(".emp_info").click(function () {
         $(this).attr("href", "/xjl/emp/getEmpList");
     });
+    $(".emp_add_btn").click(function () {
+       /* alert("test");*/
+        $(this).attr("href", "/xjl/emp/addDept");
+    });
+
     //跳转到部门页面
     $(".dept_info").click(function () {
         $(this).attr("href", "/xjl/dept/getDeptList");

@@ -1,17 +1,18 @@
 package com.xjl.controller;
+
 import com.xjl.bean.Employee;
 import com.xjl.service.EmployeeService;
-import com.xjl.util.JsonMsg;
+import com.xjl.util.JsonInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+
 @Controller
 @RequestMapping(value = "/xjl/emp")
 public class EmployeeController {
-
     @Autowired
     EmployeeService employeeService;
 
@@ -22,15 +23,15 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/deleteEmp/{empId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonMsg deleteEmp(@PathVariable("empId") Integer empId){
+    public JsonInfo deleteEmp(@PathVariable("empId") Integer empId){
         int res = 0;
         if (empId > 0){
             res = employeeService.deleteEmpById(empId);
         }
         if (res != 1){
-            return JsonMsg.fail().addInfo("emp_del_error", "员工删除异常");
+            return JsonInfo.fail().addInfo("emp_del_error", "员工删除异常");
         }
-        return JsonMsg.success();
+        return JsonInfo.success();
     }
 
     /**
@@ -41,12 +42,12 @@ public class EmployeeController {
      */
     @RequestMapping(value ="/updateEmp/{empId}", method = RequestMethod.PUT)
     @ResponseBody
-    public JsonMsg updateEmp(@PathVariable("empId") Integer empId,  Employee employee){
+    public JsonInfo updateEmp(@PathVariable("empId") Integer empId, Employee employee){
         int res = employeeService.updateEmpById(empId, employee);
         if (res != 1){
-            return JsonMsg.fail().addInfo("emp_update_error", "更改异常");
+            return JsonInfo.fail().addInfo("emp_update_error", "更改异常");
         }
-        return JsonMsg.success();
+        return JsonInfo.success();
     }
 
     /**
@@ -56,17 +57,19 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/checkEmpExists", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg checkEmpExists(@RequestParam("empName") String empName){
+    public JsonInfo checkEmpExists(@RequestParam("empName") String empName){
         //对输入的姓名与邮箱格式进行验证
-        String regName = "(^[a-zA-Z0-9_-]{3,16}$)|(^[\\u2E80-\\u9FFF]{2,5})";
+        /*String regName = "(^[a-zA-Z0-9_-]{3,16}$)|(^[\\u2E80-\\u9FFF]{2,5})";*/
+       /* String regName="([\\u4e00-\\u9fa5]{2,6})";
         if(!empName.matches(regName)){
-            return JsonMsg.fail().addInfo("name_reg_error", "输入姓名为2-5位中文或6-16位英文和数字组合");
-        }
+            return JsonInfo.fail().addInfo("name_reg_error", "输入姓名为2-5位中文或6-16位英文和数字组合");
+        }*/
         Employee employee = employeeService.getEmpByName(empName);
+
         if (employee != null){
-            return JsonMsg.fail().addInfo("name_reg_error", "用户名重复");
+            return JsonInfo.fail().addInfo("name_reg_error", "用户名重复");
         }else {
-            return JsonMsg.success();
+            return JsonInfo.success();
         }
     }
 
@@ -76,12 +79,12 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getTotalPage(){
+    public JsonInfo getTotalPage(){
         int totalItems = employeeService.getEmpCount();
         //获取总的页数
         int temp = totalItems / 5;
         int totalPages = (totalItems % 5 == 0) ? temp : temp+1;
-        return JsonMsg.success().addInfo("totalPages", totalPages);
+        return JsonInfo.success().addInfo("totalPages", totalPages);
     }
 
     /**
@@ -91,12 +94,12 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/addEmp", method = RequestMethod.POST)
     @ResponseBody
-    public JsonMsg addEmp(Employee employee){
+    public JsonInfo addEmp(Employee employee){
         int res = employeeService.addEmp(employee);
         if (res == 1){
-            return JsonMsg.success();
+            return JsonInfo.success();
         }else {
-            return JsonMsg.fail();
+            return JsonInfo.fail();
         }
     }
 
@@ -107,12 +110,12 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/getEmpById/{empId}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonMsg getEmpById(@PathVariable("empId") Integer empId){
+    public JsonInfo getEmpById(@PathVariable("empId") Integer empId){
         Employee employee = employeeService.getEmpById(empId);
         if (employee != null){
-            return JsonMsg.success().addInfo("employee", employee);
+            return JsonInfo.success().addInfo("employee", employee);
         }else {
-            return JsonMsg.fail();
+            return JsonInfo.fail();
         }
 
     }
@@ -139,6 +142,9 @@ public class EmployeeController {
         //当前页数
         int curPage = pageNo;
 
+        for (int i = 0; i < employees.size(); i++) {
+            employees.get(i).setDepartment(employeeService.selectWithDeptById(employees.get(i).getDepartmentId()));
+        }
         //将上述查询结果放到Model中，在JSP页面中可以进行展示
         mv.addObject("employees", employees)
                 .addObject("totalItems", totalItems)
