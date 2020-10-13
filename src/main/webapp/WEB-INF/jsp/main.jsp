@@ -30,19 +30,19 @@
 
                         <div class="carousel-inner" role="listbox">
                             <div class="item active" style="text-align: center;">
-                                <img class="img-responsive center-block" src="/static/img/company1.jpg" alt="company1">
+                                <img class="img-responsive center-block" src="" alt="company1">
                                 <div class="carousel-caption">
                                     <h3>漂亮大气的办公楼</h3>
                                 </div>
                             </div>
                             <div class="item">
-                                <img class="img-responsive center-block" src="/static/img/company2.jpg" alt="company2">
+                                <img class="img-responsive center-block" src="" alt="company2">
                                 <div class="carousel-caption">
                                     <h3>休闲的放松场所</h3>
                                 </div>
                             </div>
                             <div class="item">
-                                <img class="img-responsive center-block" src="/static/img/company3.jpg" alt="company3">
+                                <img class="img-responsive center-block" src="" alt="company3">
                                 <div class="carousel-caption">
                                     <h3>舒适的办公环境</h3>
                                 </div>
@@ -62,7 +62,7 @@
 
                 </div><!-- /.panel-body -->
             </div><!-- /.panel -->
-        </div><!-- /.hrms_main_ad -->
+        </div>
     </div>
     <!-- 尾部 -->
     <%@ include file="./commom/foot.jsp"%>

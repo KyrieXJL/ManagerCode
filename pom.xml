@@ -106,7 +106,6 @@
       <artifactId>spring-test</artifactId>
       <version>4.2.9.RELEASE</version>
     </dependency>
-
   </dependencies>
   <build>
     <finalName>ManagerDemo</finalName>
